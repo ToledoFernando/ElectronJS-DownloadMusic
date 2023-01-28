@@ -1,0 +1,17 @@
+{
+  "name": "electron-test",
+  "version": "1.0.0",
+  "description": "prueba de Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Toledo",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^22.1.0"
+  },
+  "dependencies": {
+    "ytdl-core": "^4.11.2"
+  }
+}
