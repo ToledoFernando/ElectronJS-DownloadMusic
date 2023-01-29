@@ -1,18 +1,66 @@
-const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  webContents,
+} = require("electron");
 const path = require("path");
-const { downloadURL, getInfoURL } = require("./download");
+
+const fs = require("fs");
+const ytdl = require("ytdl-core");
+console.log(ytdl);
+
+function downloadURL(msg) {
+  const xd = ytdl(msg.url, {
+    filter: "audioonly",
+    quality: "highestaudio",
+  })
+    .on("progress", (chunkLength, downloaded, total) => {
+      webContents.getAllWebContents().forEach((webContent) => {
+        webContent.send("newProgress", {
+          chunkLength,
+          downloaded,
+          total,
+        });
+      });
+    })
+    .pipe(
+      fs.createWriteStream(
+        `C:\\Users\\${process.env.USERNAME}\\Downloads\\${msg.title}.mp3`
+      )
+    );
+
+  xd.on("finish", () => {
+    new Notification({
+      title: "Descarga Completa",
+      body: msg.title,
+    }).show();
+  });
+}
+
+function getInfoURL(url) {
+  ytdl
+    .getInfo(url)
+    .then((info) => {
+      webContents.getAllWebContents().forEach((webContent) => {
+        webContent.send("infoURL", info);
+      });
+    })
+    .catch((err) => console.log("OAWIDNAOWIND"));
+}
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
     width: 1000,
     height: 700,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-    },
   });
   win.loadFile("src/index.html");
-  // win.setMenu(null);
+  win.setMenu(null);
 };
 
 app.whenReady().then(() => {

@@ -1,17 +1,32 @@
 {
-  "name": "electron-test",
+  "name": "download-yt-music",
   "version": "1.0.0",
   "description": "prueba de Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-rebuild -f -w ytdl-core",
+    "build": "electron-builder -w --ia32 --x64 -c.extraMetadata.version=22.1.0"
+  },
+  "build": {
+    "appId": "com.toledoDev.dlytms",
+    "productName": "Download YT Music",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "**/*",
+      "!node_modules"
+    ],
+    "win": {
+      "icon": "ico/icon.png"
+    }
   },
   "author": "Toledo",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^22.1.0"
-  },
-  "dependencies": {
+    "electron": "^22.1.0",
+    "electron-builder": "^23.6.0",
     "ytdl-core": "^4.11.2"
   }
 }
