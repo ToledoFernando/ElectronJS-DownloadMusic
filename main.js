@@ -4,8 +4,8 @@ const { downloadURL, getInfoURL } = require("./download");
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 700,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
@@ -21,8 +21,8 @@ app.whenReady().then(() => {
 
 ipcMain.on("downloadMusic", (event, msg) => {
   new Notification({
-    title: msg.title,
-    body: msg.url,
+    title: "Descargando Video",
+    body: msg.title,
   }).show();
   downloadURL(msg);
 });
