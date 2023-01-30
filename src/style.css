@@ -1,19 +1,80 @@
 @font-face {
   font-family: "myFont";
+  font-weight: 700;
   src: url("./public/font.ttf") format("truetype");
 }
 
 * {
   padding: 0;
   margin: 0;
-  color: #fff;
+  color: var(--color);
+  transition: all 0.3s;
   font-family: myFont;
-  font-weight: 0;
+}
+
+.toggler-wrapper {
+  display: block;
+  width: 45px;
+  height: 25px;
+  cursor: pointer;
+  position: relative;
+  float: right;
+  margin: 10px 20px;
+}
+
+.toggler-wrapper input[type="checkbox"] {
+  display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked + .toggler-slider {
+  background-color: #4d4d4d;
+}
+
+.toggler-wrapper .toggler-slider {
+  background-color: #ccc;
+  position: absolute;
+  border-radius: 100px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* -webkit-transition: all 300ms ease; */
+  transition: all 0.3s ease;
+}
+
+.toggler-wrapper .toggler-knob {
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.toggler-wrapper.style-3
+  input[type="checkbox"]:checked
+  + .toggler-slider
+  .toggler-knob {
+  left: calc(100% - 19px - 3px);
+}
+
+.toggler-wrapper.style-3 .toggler-knob {
+  width: calc(25px + 6px);
+  height: calc(25px + 6px);
+  border-radius: 50%;
+  left: -3px;
+  top: -3px;
+  -webkit-box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
+  box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
+  z-index: 200;
+}
+
+.mod {
+  background-image: url("./public/luna.svg");
+  background-position: center center;
+  background-size: cover;
+  background-color: #fff;
 }
 
 html {
   overflow: hidden;
-  background-color: #000;
+  /* background-color: #fff; */
 }
 
 .img {
@@ -51,6 +112,7 @@ body {
   width: 100%;
   height: 100vh;
   padding: 0;
+  background-color: var(--fondo);
   margin: 0;
   overflow: hidden;
   position: relative;
@@ -83,10 +145,11 @@ body {
 }
 
 .buscar input {
-  background-color: #151515bb;
-  border: 0;
+  background-color: #fff;
+  border: 1px solid #0606067d;
   padding: 10px 15px;
   font-size: 18px;
+  box-shadow: 0px 0px 13px #fff;
   border-radius: 5px 0px 0px 5px;
   outline: none;
   width: 450px;
@@ -97,15 +160,16 @@ body {
   font-size: 18px;
   width: max-content;
   cursor: pointer;
-  background-color: #151515bb;
+  background-color: #d42020;
+  /* background-color: #d42020; */
   border: 0;
-  transition: all 0.5s;
+  color: #fff;
+  transition: all 0.3s;
   border-radius: 0px 5px 5px 0px;
 }
 
 .buscar button:hover {
-  transform: scale(1.1);
-  background-color: #222222;
+  transform: scale(1.05);
 }
 
 canvas {
@@ -123,7 +187,7 @@ canvas {
   width: max-content;
   min-height: 170px;
   height: max-content;
-  background-color: #100f0f;
+  background-color: #fff;
   padding: 10px 15px;
   border-radius: 10px;
   margin-top: 7%;
@@ -185,6 +249,167 @@ canvas {
 #progres {
   background: linear-gradient(to top left, #0b7f0b, rgb(63, 184, 63));
   border-radius: 20px;
-  width: 0;
+  width: 0%;
   height: 100%;
+}
+
+.deco1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  bottom: -10%;
+  left: -10%;
+  background-color: #d42020;
+  z-index: -1;
+}
+
+.deco1::before {
+  transition: all 0.3s;
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  bottom: 5%;
+  left: 5%;
+  background-color: var(--fondo);
+}
+
+.deco1::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  top: -140%;
+  right: -40%;
+  background-color: #d42020;
+}
+
+.deco2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  top: 40%;
+  right: -10%;
+  background-color: #295bb3;
+}
+
+.deco2::before {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  top: 11%;
+  right: 8%;
+  background-color: var(--fondo);
+}
+
+.deco2::after {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 10%;
+  z-index: -1;
+  right: 500%;
+  background-color: #295bb3;
+}
+
+.deco3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: -3%;
+  left: -3%;
+  background-color: #27ae37;
+}
+
+.deco3::before {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: 12%;
+  left: 10%;
+  background-color: var(--fondo);
+}
+
+.deco3::after {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 500%;
+  z-index: -1;
+  left: 700%;
+  background-color: #27ae37;
+}
+
+.deco4 {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  top: -20%;
+  right: 10%;
+  background-color: #c433ac;
+}
+
+.deco4::before {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  bottom: 7%;
+  left: 7%;
+  background-color: var(--fondo);
+}
+
+.deco4::after {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  top: 320%;
+  z-index: -1;
+  left: 80%;
+  background-color: #c433ac;
+}
+
+.deco5 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  bottom: -20%;
+  right: 30%;
+  background-color: #f3db2b;
+}
+
+.deco5::before {
+  content: "";
+  transition: all 0.3s;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  top: 7%;
+  left: 7%;
+  background-color: var(--fondo);
 }

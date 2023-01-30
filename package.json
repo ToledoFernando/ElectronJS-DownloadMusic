@@ -4,9 +4,11 @@
   "description": "prueba de Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron-forge start",
     "postinstall": "electron-rebuild -f -w ytdl-core",
-    "build": "electron-builder -w --ia32 --x64 -c.extraMetadata.version=22.1.0"
+    "dist": "electron-builder --win",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "build": {
     "appId": "com.toledoDev.dlytms",
@@ -14,9 +16,14 @@
     "directories": {
       "output": "build"
     },
+    "extraResources": [
+      "node_modules/ytdl-core",
+      "node_modules/sax",
+      "node_modules/miniget",
+      "node_modules/m3u8stream"
+    ],
     "files": [
-      "**/*",
-      "!node_modules"
+      "**/*"
     ],
     "win": {
       "icon": "ico/icon.png"
@@ -25,8 +32,15 @@
   "author": "Toledo",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-deb": "^6.0.4",
+    "@electron-forge/maker-rpm": "^6.0.4",
+    "@electron-forge/maker-squirrel": "^6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
     "electron": "^22.1.0",
-    "electron-builder": "^23.6.0",
     "ytdl-core": "^4.11.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }
