@@ -26,7 +26,7 @@
 > ## Despues de buscar la musica puedes descargarla
 
 - se mostrara una barra de progreso
-- se lanzara una notificacion cuando la descarga inicie al igual cuando finalize
+- se lanzara una notificacion cuando la descarga inicie al igual cuando finalice
 
 ![demo2](./demo/demo2.png)
 
