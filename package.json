@@ -1,5 +1,5 @@
 {
-  "name": "download-yt-music",
+  "name": "downloadytmusic",
   "version": "1.0.0",
   "description": "prueba de Electron",
   "main": "main.js",
