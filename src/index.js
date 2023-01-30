@@ -1,5 +1,12 @@
 const $ = (id) => document.getElementById(id);
 
+// let check = false;
+const light = "#f3eded";
+const dark = "#000";
+
+const check = $("check");
+const mod = $("mod");
+const md = $("modo");
 const input = $("searchURL");
 const button = $("Buscar");
 const progreso = $("progres");
@@ -11,6 +18,49 @@ const download = $("downloadMusic");
 const span = $("img");
 const buscarInfo = $("infoSearch");
 const porcentaje = $("porcentaje");
+const body = $("body");
+
+const cambiarModo = () => {
+  if (!check.checked) {
+    input.style.background = "#151515bb";
+    input.style.boxShadow = "none";
+    divVideo.style.background = "#100f0f";
+    document.documentElement.style.setProperty("--color", light);
+    document.documentElement.style.setProperty("--fondo", dark);
+    md.style.backgroundImage = "url('./public/sol.svg')";
+    localStorage.setItem("modo", "dark");
+  } else {
+    divVideo.style.background = "#fff";
+    localStorage.setItem("modo", "light");
+    document.documentElement.style.setProperty("--color", dark);
+    document.documentElement.style.setProperty("--fondo", light);
+    input.style.background = "#fff";
+    input.style.boxShadow = "0px 0px 13px #fff";
+    md.style.backgroundImage = "url('./public/luna.svg')";
+  }
+};
+const modo = localStorage.getItem("modo");
+if (!modo || modo == "light") {
+  check.checked = false;
+  divVideo.style.background = "#fff";
+  localStorage.setItem("modo", "light");
+  input.style.background = "#fff";
+  input.style.boxShadow = "0px 0px 13px #fff";
+  document.documentElement.style.setProperty("--color", dark);
+  document.documentElement.style.setProperty("--fondo", light);
+  md.style.backgroundImage = "url('./public/luna.svg')";
+} else {
+  check.checked = true;
+  divVideo.style.background = "#100f0f";
+  input.style.background = "#151515bb";
+  input.style.boxShadow = "none";
+  document.documentElement.style.setProperty("--fondo", dark);
+  document.documentElement.style.setProperty("--color", light);
+  md.style.backgroundImage = "url('./public/sol.svg')";
+  localStorage.setItem("modo", "dark");
+}
+
+mod.addEventListener("click", cambiarModo);
 
 span.addEventListener("click", () =>
   alert(` - - COMO USAR - - 
