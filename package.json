@@ -5,7 +5,6 @@
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
-    "postinstall": "electron-rebuild -f -w ytdl-core",
     "dist": "electron-builder --win",
     "package": "electron-forge package",
     "make": "electron-forge make"
