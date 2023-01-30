@@ -1,5 +1,5 @@
 {
-  "name": "download-yt-music",
+  "name": "downloadytmusic",
   "version": "1.0.0",
   "description": "prueba de Electron",
   "main": "main.js",
@@ -12,7 +12,7 @@
   },
   "build": {
     "appId": "com.toledoDev.dlytms",
-    "productName": "Download YT Music",
+    "productName": "Download Music",
     "directories": {
       "output": "build"
     },
@@ -42,5 +42,6 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
-  }
+  },
+  "productName": "Download Music"
 }

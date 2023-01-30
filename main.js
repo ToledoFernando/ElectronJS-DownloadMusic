@@ -12,7 +12,7 @@ const createWindow = () => {
     height: 700,
   });
   win.loadFile("src/index.html");
-  // win.setMenu(null);
+  win.setMenu(null);
 };
 
 app.whenReady().then(() => {
